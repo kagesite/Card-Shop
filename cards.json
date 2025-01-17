@@ -1,5 +1,4 @@
-{
-    "cards": [
+[
       {
         "id": 1,
         "name": "Fireball Magus",
@@ -1271,5 +1270,5 @@
         "cost": 2
       }
     ]
-  }
+
   
