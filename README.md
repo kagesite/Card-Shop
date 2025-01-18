@@ -36,3 +36,12 @@ This project demonstrates the use of different HTTP requests in a Node.js applic
 1. Adjust the request link to the id that you would like to delete.
 2. Once done with the previous step, click on the 'Send Request'.
 3. Go to the browser and search up that deleted card id and you should be given a message saying card isn't found.
+
+
+## Challenges I faced
+This project was quite the challenge. I had to do a lot of research and reading to learn how to use certain things. I try my best not to use ChatGPT. When I do though, I make sure to put in prompts to help me learn how things work, rather than just ask for the code.
+
+Jsonwebtokens was definitely confusing for me. I didn't understand how they worked and that part scared me when doing this project. After learning and implementing though, I was able to understand it just a little bit more. 
+
+## Conclusion
+This project was quite fun to do and was also a challenge for me. Lots of learning happened while building this project. 
