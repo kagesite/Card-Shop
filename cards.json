@@ -1268,15 +1268,5 @@
     "type": "Spell",
     "rarity": "Common",
     "cost": 2
-  },
-  {
-    "id": 199,
-    "name": "Ultimeatum",
-    "set": "Exlusive Set",
-    "type": "Final Boss",
-    "power": 1000,
-    "toughness": 1000,
-    "rarity": "Extremely Rare",
-    "cost": 50
   }
 ]

@@ -190,6 +190,23 @@ app.put("/cards/:id", (req, res) => {
 })
 
 
+// Delete a Card
+app.delete("/cards/:id", (req, res) => {
+    const { id } = req.params;
+
+    const cardIndex = cards.findIndex(card => card.id === Number(id));
+    if (cardIndex === -1) {
+        return res.status(404).json({ errorMessage: "Card not found" });
+    }
+
+    const deletedCard = cards.splice(cardIndex, 1)[0];
+
+    // save updated cards to file
+    fs.writeFileSync(__dirname + "/cards.json", JSON.stringify(cards, null, 2));
+
+    res.json({ successMessage: "Card deleted succesfully", card: deletedCard });
+})
+
 
 
 app.listen(3000, () => {
