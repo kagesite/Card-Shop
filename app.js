@@ -7,6 +7,24 @@ app.use(express.json());
 
 const secretKey = "mySecretKey";
 
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (!token) {
+        return res.status(401).json({ errorMessage: "Unauthorized access" });
+    }
+
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            return res.status(403).json({ errorMessage: "Forbidden Access" });
+        }
+        req.user = user
+        next();
+    })
+}
+
+
 // CARDS variable and Data try-catch
 let cards;
 try {
@@ -29,6 +47,7 @@ try {
     users = [];
 }
 
+// POST REQUEST for getting a token (that matches user info)
 app.post("/getToken", (req, res) => {
     const { username, password } = req.body;
 
@@ -63,35 +82,33 @@ function filterData(param, value) {
 
 // Display requested card data
 app.get("/cards", (req, res) => {
+    const { id, set, type, rarity } = req.query;
 
-    console.log("Cards Page");
+    let filteredCards = cards
 
-    let filteredCards = cards;
-
-    if (req.query.id) {
-        filteredCards = filterData('id', req.query.id);
+    // Filtering using the query parameters if they exist
+    if (id) {
+        filteredCards = filteredCards.filter(card => card.id === parseInt(id));
     }
 
-    // Filter by set
-    if (req.query.set) {
-        filteredCards = filterData('set', req.query.set);
+    if (set) {
+        filteredCards = filteredCards.filter(card => card.set === set);
     }
 
-    // Filter by type
-    if (req.query.type) {
-        filteredCards = filterData('type', req.query.type);
+    if (type) {
+        filteredCards = filteredCards.filter(card => card.type === type);
     }
 
-    if (req.query.rarity) {
-        filteredCards = filterData('rarity', req.query.rarity);
+    if (rarity) {
+        filteredCards = filteredCards.filter(card => card.rarity === rarity);
     }
 
     if (filteredCards.length === 0) {
         // res.status(404).json({ message: "No cards found matching the filters."});
         return res.send(`
-            <h1>Can't Find Cardsv bm,.,
+            <h1>Can't Find Cards</h1>
               </h1>
-            <h3>Try Again!</h3>
+            <a href="/cards"><h3>Try Again!</h3></a>
         `)
     }
 
@@ -127,6 +144,28 @@ app.get("/cards", (req, res) => {
     // res.json(filteredCards);
 })
 
+// Create a New Card 
+app.post("/cards/create", authenticateToken, (req, res) => {
+    const { id, name, set, type, power, toughness, rarity, cost } = req.body;
+
+    if (!id || !name || !set || !rarity) {
+        return res.status(400).json({ errorMessage: "Missing required info" });
+    }
+
+    if (cards.some(card => card.id === id)) {
+        return res.status(400).json({ errorMessage: "Card ID must be unique" });
+    }
+
+    // Create a new card
+    const newCard = { id, name, set, type, power, toughness, rarity, cost };
+    cards.push(newCard);
+
+    // Save to file
+    fs.writeFileSync(__dirname + "/cards.json", JSON.stringify(cards, null, 2));
+
+    res.status(201).json({ successMessage: "Card created successfully" })
+
+});
 
 app.listen(3000, () => {
     console.log("Practice live on Port: 3000");

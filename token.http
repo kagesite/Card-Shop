@@ -2,6 +2,22 @@ POST http://localhost:3000/getToken
 Content-Type: application/json
 
 {
-    "username": "",
-    "password": ""
+    "username": "user1",
+    "password": "password1"
+}
+
+###
+POST http://localhost:3000/cards/create
+Content-Type: application/json
+Authorization: Bearer < PUT TOKEN HERE >
+
+{
+    "id": 199,
+    "name": "Joe Mama",
+    "set": "Exlusive Set",
+    "type": "Final Boss",
+    "power": 1000,
+    "toughness": 1000,
+    "rarity": "Extremely Rare",
+    "cost": 50
 }
