@@ -44,4 +44,4 @@ This project was quite the challenge. I had to do a lot of research and reading 
 Jsonwebtokens was definitely confusing for me. I didn't understand how they worked and that part scared me when doing this project. After learning and implementing though, I was able to understand it just a little bit more. 
 
 ## Conclusion
-This project was quite fun to do and was also a challenge for me. Lots of learning happened while building this project. 
+This project was quite fun to do and was also a challenge for me. Lots of learning happened while building this project. I will make sure to include this project in my resumé to give me a better portfolio for my internship hunt.
