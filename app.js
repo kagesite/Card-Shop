@@ -7,15 +7,8 @@ app.use(express.json());
 
 const secretKey = "mySecretKey";
 
-const users = [
-    { username: "user1", password: "password1" },
-    { username: "user2", password: "password2" },
-    { username: "user3", password: "password3" },
-    { username: "user4", password: "password4" }
-];
-
+// CARDS variable and Data try-catch
 let cards;
-
 try {
     const data = fs.readFileSync(__dirname + "/cards.json", "utf-8");
     cards = JSON.parse(data);
@@ -25,6 +18,40 @@ try {
     console.error("There was an error");
 }
 
+
+let users;
+try {
+    const userData = fs.readFileSync(__dirname + '/users.json', "utf-8");
+    users = JSON.parse(userData);
+    console.log("Users Loaded Correctly");
+} catch (error) {
+    console.error("Error loading users");
+    users = [];
+}
+
+app.post("/getToken", (req, res) => {
+    const { username, password } = req.body;
+
+    // Input validation
+    if (!username || !password) {
+        return res.status(400).json({ errorMessage: "Username and password are required" })
+    }
+
+    const user = users.find(u => u.username === username && u.password === password);
+    if (!user) {
+        return res.status(401).json({ errorMessage: "Invalid username or password" });
+    }
+
+    // Generate JWT
+    const token = jwt.sign({ username: user.username }, secretKey, {
+        expiresIn: "1m", // Token valid for 1 minute
+    })
+
+    res.status(200).json({ message: "Authentication successful", token });
+})
+
+
+// Filter through cards data to find requested info
 function filterData(param, value) {
 
     if (param === 'id') {
@@ -34,6 +61,7 @@ function filterData(param, value) {
     return cards.filter(card => card[param] === value);
 }
 
+// Display requested card data
 app.get("/cards", (req, res) => {
 
     console.log("Cards Page");
@@ -99,23 +127,6 @@ app.get("/cards", (req, res) => {
     // res.json(filteredCards);
 })
 
-
-app.post("/login", (req, res) => {
-    const { username, password } = req.body;
-
-    // Authenticate user
-    const user = users.find(u => u.username === username && u.password === password);
-    if (!user) {
-        return res.status(401).json({ errorMessage: "Invalid username or password" });
-    }
-
-    // Generate JWT
-    const token = jwt.sign({ username: user.username }, secretKey, {
-        expiresIn: '1m', // Expires in 1 minute
-    });
-
-    res.json({ message: "Login Successful", token });
-})
 
 app.listen(3000, () => {
     console.log("Practice live on Port: 3000");
