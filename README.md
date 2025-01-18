@@ -1,6 +1,7 @@
 # Card-Shop
 
 ### About Project ###
+## Built by: Kagesite ##
 This project is about how to use different HTTP requests. In this project, I learned how to use ***app.get(), app.post(), app.put(), and app.delete().***
 
 ## How to use ##
@@ -27,7 +28,7 @@ This project is about how to use different HTTP requests. In this project, I lea
 3. Updated and change the card info in the below object.
 4. Make your request and search for that card in the browser to see the update.
 
-### Step 4: Delete Request - /cards/:id ###
+### Step 5: Delete Request - /cards/:id ###
 1. Adjust the request link to the id that you would like to delete.
 2. Once done with the previous step, click on the 'Send Request'.
 3. Go to the browser and search up that deleted card id and you should be given a message saying card isn't found.
