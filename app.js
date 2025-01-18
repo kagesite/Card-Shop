@@ -48,7 +48,7 @@ try {
     users = [];
 }
 
-// POST REQUEST for getting a token (that matches user info)
+// POST REQUEST FOR GETTING TOKEN (that matches user info)
 app.post("/getToken", (req, res) => {
     const { username, password } = req.body;
 
@@ -71,7 +71,7 @@ app.post("/getToken", (req, res) => {
 })
 
 
-// Filter through cards data to find requested info
+// FUNCTION TO FILTER CARD DATA
 function filterData(param, value) {
 
     if (param === 'id') {
@@ -81,7 +81,7 @@ function filterData(param, value) {
     return cards.filter(card => card[param] === value);
 }
 
-// Display requested card data
+// DISPLAY REQUESTED CARD DATA
 app.get("/cards", (req, res) => {
     const { id, set, type, rarity } = req.query;
 
@@ -145,7 +145,7 @@ app.get("/cards", (req, res) => {
     // res.json(filteredCards);
 })
 
-// Create a New Card 
+// CREATE A NEW CARD 
 app.post("/cards/create", authenticateToken, (req, res) => {
     const { id, name, set, type, power, toughness, rarity, cost } = req.body;
 
@@ -169,7 +169,7 @@ app.post("/cards/create", authenticateToken, (req, res) => {
 });
 
 
-// Update a Card
+// UPDATE A CARD
 app.put("/cards/:id", (req, res) => {
     const { id } = req.params;
     const { name, set, type, power, toughness, rarity, cost } = req.body;
@@ -190,7 +190,7 @@ app.put("/cards/:id", (req, res) => {
 })
 
 
-// Delete a Card
+// DELETE A CARD
 app.delete("/cards/:id", (req, res) => {
     const { id } = req.params;
 
