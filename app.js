@@ -7,6 +7,7 @@ app.use(express.json());
 
 const secretKey = "mySecretKey";
 
+// TOKEN AUTHENTICATION 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]
@@ -166,6 +167,30 @@ app.post("/cards/create", authenticateToken, (req, res) => {
     res.status(201).json({ successMessage: "Card created successfully" })
 
 });
+
+
+// Update a Card
+app.put("/cards/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, set, type, power, toughness, rarity, cost } = req.body;
+
+    const cardIndex = cards.findIndex(card => card.id === Number(id));
+
+    if (cardIndex === -1) {
+        return res.status(404).json({ errorMessage: "Card not found"});
+    }
+
+    // Update card properties
+    const updatedCard = {...cards[cardIndex], name, set, type, power, toughness, rarity, cost };
+    cards[cardIndex] = updatedCard;
+    
+    fs.writeFileSync(__dirname + "/cards.json", JSON.stringify(cards, null, 2));
+
+    res.json({ successMessage: "Card updated successfully", card: updatedCard });
+})
+
+
+
 
 app.listen(3000, () => {
     console.log("Practice live on Port: 3000");
