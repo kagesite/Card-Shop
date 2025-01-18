@@ -21,3 +21,8 @@ This project is about how to use different HTTP requests. In this project, I lea
 3. Once you have input your new card info, click on the 'Send Reqest' and it will create a new card.
     - You can find this card by making a new request in the browser. I prefer to search by ?id="..."
 
+### Step 4: /cards/:id ###
+1. Step 4 can be used to Update info on any card you want.
+2. Select a card by id
+3. Updated and change the card info in the below object.
+4. Make your request and search for that card in the browser to see the update.
