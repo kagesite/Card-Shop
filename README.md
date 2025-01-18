@@ -1,7 +1,7 @@
 # Card-Shop
 
 ## About Project
-### `Built by: Kagesite `
+`Built by: Kagesite `
 This project demonstrates the use of different HTTP requests in a Node.js application. In this project, I learned how to implement the following Express.js methods:
 - `app.get()`
 - `app.post()`
