@@ -40,7 +40,4 @@ Authorization: Bearer < TOKEN HERE >
 ###
 
 DELETE http://localhost:3000/cards/199
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzM3MTY4ODg5LCJleHAiOjE3MzcxNjg5NDl9.6Oo96p8W7DaEh2kpuP3OLDrdUqEicoiacH2tfZBYeZs
-
-###
-
+Authorization: Bearer < TOKEN HERE>

@@ -9,8 +9,12 @@ This project is about how to use different HTTP requests. In this project, I lea
 2. Connect to the server in the brower at http://localhost:3000/cards.
     ### Once connected: ###
     - You can start to search up, ?id="...", ?set="...", ?type="...", after the /cards path.
-    * * If there is a problem, check spelling or capitalize first letters.
+    - If there is a problem, check spelling or capitalize first letters.
 
 
 ### Step 2: /getToken ###
-1. Go to **token.http** file and click on the 'Send Request' for the first http request. This will give you a auth. Token that will have to be copied and pasted for the next requests
+1. Go to **token.http** file and click on the 'Send Request' for the first http request. This will give you a authorizatoin token that will have to be copied and pasted for the next requests
+
+### Step 3: /cards/create ###
+1. Inside of the **token.http** file, copy your token into the < TOKEN HERE > on line 12, 28, and 43.
+    - This will allow you to run all the requests with the proper authorization.
