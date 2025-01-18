@@ -2,7 +2,11 @@
 
 ## About Project
 ### Built by: Kagesite 
-This project is about how to use different HTTP requests. In this project, I learned how to use ***app.get(), app.post(), app.put(), and app.delete().***
+This project demonstrates the use of different HTTP requests in a Node.js application. In this project, I learned how to implement the following Express.js methods:
+- `app.get()`
+- `app.post()`
+- `app.put()`
+- `app.delete()`
 
 ## How to use
 ### Step 1:
