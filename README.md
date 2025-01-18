@@ -9,7 +9,7 @@ This project is about how to use different HTTP requests. In this project, I lea
 - Connect to the server in the brower at http://localhost:3000/cards.
     ### Once connected: ###
     - You can start to search up, ?id="...", ?set="...", ?type="...".
-    - `red` If there is a problem, check spelling or capitalize first letters
+    - <span style="color: red;">If there is a problem, check spelling or capitalize first letters</span>
 
 
 ### Step 2: /getToken ###
