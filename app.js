@@ -70,7 +70,6 @@ app.post("/getToken", (req, res) => {
     res.status(200).json({ message: "Authentication successful", token });
 })
 
-
 // FUNCTION TO FILTER CARD DATA
 function filterData(param, value) {
 
@@ -168,7 +167,6 @@ app.post("/cards/create", authenticateToken, (req, res) => {
 
 });
 
-
 // UPDATE A CARD
 app.put("/cards/:id", (req, res) => {
     const { id } = req.params;
@@ -189,7 +187,6 @@ app.put("/cards/:id", (req, res) => {
     res.json({ successMessage: "Card updated successfully", card: updatedCard });
 })
 
-
 // DELETE A CARD
 app.delete("/cards/:id", (req, res) => {
     const { id } = req.params;
@@ -207,8 +204,7 @@ app.delete("/cards/:id", (req, res) => {
     res.json({ successMessage: "Card deleted succesfully", card: deletedCard });
 })
 
-
-
+// SERVER LISTEN ON PORT 3000;
 app.listen(3000, () => {
     console.log("Practice live on Port: 3000");
 })
