@@ -48,6 +48,11 @@ try {
     users = [];
 }
 
+
+app.get("/", (req, res) => {
+    res.send(`<h1>Go to localhost:3000/cards!</h1>`)
+})
+
 // POST REQUEST FOR GETTING TOKEN (that matches user info)
 app.post("/getToken", (req, res) => {
     const { username, password } = req.body;
